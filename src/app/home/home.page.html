@@ -1,20 +1,22 @@
-<ion-header [translucent]="true">
+<ion-header>
   <ion-toolbar>
     <ion-title>
-      Blank
+      QR Code Generator
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <ion-select type="text"  placeholder="Seleccionar Cliente" [(ngModel)]="cli">
+  <ion-select-option *ngFor="let cliente of clientes" >{{cliente.nombre}}</ion-select-option>
+  </ion-select>
+  <ion-textarea placeholder="QR Data" [(ngModel)]="qrData"></ion-textarea>
 
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
-  </div>
+ <ion-button full icon-left (click)="createCode()">
+  <ion-icon  name="barcode"></ion-icon>
+  Create
+ </ion-button>
+
+ <qr-code [value]="createdCode" size="300" errorCorrectionLevel="M"></qr-code>
+
 </ion-content>
